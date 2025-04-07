@@ -2,36 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Magic Shop Order Form</title>
+    <title>FoodFood</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-<h1>Magic Shop Repair Form</h1>
+<h1>What do you want to eat today?</h1>
 
-<form id="order-form">
-    <label for="customer-name">Customer Name</label>
+<form id="order-form" action="submit_order.php" method="POST">
+    <label for="customer-name">What is your name?</label>
     <input type="text" id="customer-name" name="customer-name" required>
 
-    <label for="item">Select Item</label>
+    <label for="item">Select food</label>
     <select id="item" name="item" required>
-        <option value="Wand">Wand</option>
-        <option value="Cauldron">Cauldron</option>
-        <option value="Cloak">Cloak</option>
-        <option value="Spell Scroll">Spell Scroll</option>
-        <option value="Ring">Ring</option>
+        <option value="Kebab">Kebab</option>
+        <option value="Pizza">Pizza</option>
+        <option value="Beef">Beef</option>
+        <option value="Pasta">Pasta</option>
+        <option value="Vegan">Vegan</option>
     </select>
 
-    <label>Job Type</label>
-    <div id="job-type" class="radio-group">
-        <input type="radio" id="curse-removal" name="job-type" value="de-curse">
-        <label for="curse-removal">Curse Removal</label>
+    <label>Food Type</label>
+    <div id="food-type" class="radio-group">
+        <input type="radio" id="curse-removal" name="food-type" value="Spicy">
+        <label for="curse-removal">Spicy</label>
 
-        <input type="radio" id="enhance" name="job-type" value="enhance">
-        <label for="enhance">Enhance</label>
+        <input type="radio" id="enhance" name="food-type" value="Simple">
+        <label for="enhance">Simple</label>
 
-        <input type="radio" id="clean" name="job-type" value="clean">
-        <label for="clean">Clean</label>
+        <input type="radio" id="clean" name="food-type" value="Surprise">
+        <label for="clean">Surprise me</label>
     </div>
 
     <div id="curse-strength-container" class="hidden">
