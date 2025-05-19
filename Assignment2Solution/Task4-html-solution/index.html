@@ -53,10 +53,52 @@
       border: none;
     }
   </style>
+
+<script>
+  function submitForm() {
+
+    const idNumber = document.getElementById("idNumber").value;
+
+    if (!idNumber) {
+      alert("Please enter ID Number.");
+      return;
+    }
+
+    // Make a POST request to the Spring Boot backend
+    fetch("/verifyid", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: new URLSearchParams({
+        user_id: idNumber
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status) {
+        if (data.data) {
+          document.getElementById("city)").innerHTML = `<strong>City:</strong> ${data.data.City}`;
+          document.getElementById("branch").innerHTML = `<strong>Branch:</strong> ${data.data.Branch}`;
+          alert("User verified: " + data.data.Name);
+        } else {
+          alert(data.message); // "Valid ID but no user data available."
+        }
+      } else {
+        alert(data.message); // "Invalid ID. Please try again."
+      }
+    })
+    .catch(error => {
+      console.error("Error during verification:", error);
+      alert("An error occurred while verifying the ID.");
+    });
+  };
+</script>
+
 </head>
 
 <body>
-  <form action="result.html">
+  <form action="#">
     <div class="container py-4">
       <div class="id-card text-center p-4">
         <h5 class="fw-bold">Name</h5>
@@ -68,9 +110,9 @@
           <label for="barcodeID" class="form-label"><strong>Barcode ID:</strong></label>
           <input type="text" id="barcodeID" class="form-control" placeholder="Enter Barcode ID">
         </div>
-        <p><strong>City:</strong> --</p>
-        <p><strong>Branch:</strong> --</p>
-        <button class="btn btn-custom mt-3">Submit</button>
+        <p id="city"><strong>City:</strong> --</p>
+        <p id="branch"><strong>Branch:</strong> --</p>
+        <button class="btn btn-custom mt-3" onclick="submitForm()">Submit</button>
       </div>
     </div>
   </form>
